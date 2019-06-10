@@ -1,0 +1,9 @@
+numpy==1.16.2
+librosa==0.6.3
+sounddevice==0.3.13
+ai2thor==1.0.2
+noisereduce==0.1.2
+opencv_python==4.0.0.21
+pydub==0.23.1
+SoundFile==0.10.2
+hmmlearn==0.2.1
