@@ -7,6 +7,7 @@ from pydub.playback import play
 import os
 import pickle
 import noisereduce as nr
+from pydub import AudioSegment, silence
 
 
 class ASR():

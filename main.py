@@ -6,22 +6,20 @@ from pydub import AudioSegment, silence
 
 if __name__ == '__main__':
     rb = Robot()
-    obj = ASR()
+    asr = ASR()
     run = True
     while(run):
         frame = rb.getFrame()
         cv2.imshow('ai2thor', frame)
         
-
-        obj.record_sound('record.wav', duration=5)
-        t0 = time()
+        asr.record_sound('record.wav', duration=5)
         myaudio = AudioSegment.from_wav('record.wav')
-        audios = silence.split_on_silence(myaudio, min_silence_len=300, silence_thresh=-16, keep_silence=300)
+        audios = silence.split_on_silence(myaudio, min_silence_len=300, silence_thresh=-32, keep_silence=400)
         for audio in audios:
             print('Detecting...')
-            audio.export('word.wav')
-            obj.noise_cancel()
-            command = obj.asr()
+            audio.export('test.wav')
+            asr.noise_cancel()
+            command = asr.asr()
             print(command)
             if command == 'drop':
                 rb.dropObject()
@@ -35,8 +33,6 @@ if __name__ == '__main__':
             key = chr(tmp)
             if key == 'q': run = False
             rb.apply(key)
-        t1 = time()
-        print(t1-t0)
-
+        
     rb.stop()
     cv2.destroyAllWindows()

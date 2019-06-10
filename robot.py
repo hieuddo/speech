@@ -7,8 +7,7 @@ class Robot:
     rotates = {'j': -15, 'l': 15}
     looks = {'i': -15, 'k': 15}
 
-    def __init__(self, _screen_size=720):
-        self.screen_size = _screen_size
+    def __init__(self, _screen_width=1280, _screen_height=720):
         self.rotation = 0
         self.horizon = 30
         
@@ -19,8 +18,8 @@ class Robot:
         # Bedrooms: FloorPlan301 - FloorPlan330
         # Bathrooms: FloorPLan401 - FloorPlan430
         
-        self.controller.start(player_screen_width=self.screen_size,
-                player_screen_height=self.screen_size)
+        self.controller.start(player_screen_width=_screen_width,
+                player_screen_height=_screen_height)
         self.controller.reset('FloorPlan29')
         self.event = self.controller.step(dict(action='Initialize', gridSize=0.25))
         self.event = self.controller.step(dict(action='TeleportFull', x=0.5, y=0.9313, z=-0.25, rotation=self.rotation, horizon=self.horizon))
