@@ -7,7 +7,7 @@ class Robot:
     rotates = {'j': -15, 'l': 15}
     looks = {'i': -15, 'k': 15}
 
-    def __init__(self, _screen_size=416):
+    def __init__(self, _screen_size=720):
         self.screen_size = _screen_size
         self.rotation = 0
         self.horizon = 30

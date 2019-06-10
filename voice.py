@@ -12,7 +12,7 @@ import noisereduce as nr
 class ASR():
     def __init__(self):
         self.mapping = ['drop','Lettuce','Apple','Bread','Potato','Spoon','Knife','Fork']
-        self.hmm = pickle.load(open('hmm.pk', 'rb'))
+        self.hmm = pickle.load(open('model/hmm.pk', 'rb'))
         self.n_sample=30
 
     def softmax_stable(self, Z):
@@ -25,8 +25,9 @@ class ASR():
         return A
 
     def record_sound(self, filename, duration=1, fs=44100, play=False):
-        sd.play( np.sin( 2*np.pi*940*np.arange(fs)/fs )  , samplerate=fs, blocking=True)
-        sd.play( np.zeros( int(fs*0.2) ), samplerate=fs, blocking=True)
+        print('Recording...')
+        # sd.play( np.sin( 2*np.pi*940*np.arange(fs)/fs )  , samplerate=fs, blocking=True)
+        # sd.play( np.zeros( int(fs*0.2) ), samplerate=fs, blocking=True)
         data = sd.rec(frames=duration*fs, samplerate=fs, channels=1, blocking=True)
         if play:
             sd.play(data, samplerate=fs, blocking=True)
@@ -40,10 +41,10 @@ class ASR():
             if i % 5 == 4:
                 input("Press Enter to continue...")
     
-    def noise_cancel(self):
-        data, fs = librosa.load('test.wav')
+    def noise_cancel(self, filename='test.wav'):
+        data, fs = librosa.load(filename)
         reduced_noise = nr.reduce_noise(audio_clip=data, noise_clip=data)
-        sf.write('test.wav', data=reduced_noise, samplerate=fs)
+        sf.write(filename, data=reduced_noise, samplerate=fs)
                 
     def get_mfcc(self, filename):
         data, fs = librosa.load(filename, sr=None)
@@ -58,7 +59,7 @@ class ASR():
             model_temp = hmm.GaussianHMM(n_components=30, verbose=True, n_iter=200)
             model_temp.fit(X=np.vstack(data), lengths=[x.shape[0] for x in data])
             model.append(model_temp)
-        pickle.dump(model, open('hmm.pk','wb'))
+        pickle.dump(model, open('model/hmm.pk','wb'))
 
     def asr(self):
         # self.record_sound('test.wav')
@@ -81,9 +82,3 @@ class ASR():
         res = self.mapping[score.index(max(score))]
         print(res)
         return res
-
-# obj = ASR()
-# # obj.train()
-# obj.record_sound('test.wav')
-
-# obj.asr()
