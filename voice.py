@@ -68,18 +68,6 @@ class ASR():
         score = []
         for i in range(len(self.mapping)):
             score.append(self.hmm[i].score(mfcc))
-        print(score)
         res = self.mapping[score.index(max(score))]
         print('predict: {}'.format(res))
-        print('score: ', np.max(score))
-        return res
-
-    def asr_from_file(self, filename):
-        mfcc = self.get_mfcc(filename)
-        score = []
-        for i in range(len(self.mapping)):
-            score.append(self.hmm[i].score(mfcc))
-
-        res = self.mapping[score.index(max(score))]
-        print(res)
         return res
