@@ -13,6 +13,7 @@ if __name__ == '__main__':
         asr.record_sound('record.wav', duration=5)
         myaudio = AudioSegment.from_wav('record.wav')
         audios = silence.split_on_silence(myaudio, min_silence_len=300, silence_thresh=-32, keep_silence=400)
+        
         for audio in audios:
             print('Detecting...')
             audio.export('test.wav')

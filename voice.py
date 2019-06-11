@@ -6,6 +6,7 @@ import hmmlearn.hmm as hmm
 from pydub.playback import play
 import os
 import pickle
+from pydub import AudioSegment, silence
 import noisereduce as nr
 
 
@@ -70,3 +71,10 @@ class ASR():
         res = self.mapping[score.index(max(score))]
         print('predict: {}'.format(res))
         return res
+    def listen(self):
+        while True:
+            self.record_sound('record.wav', duration=5)
+            myaudio = AudioSegment.from_wav('record.wav')
+            audios = silence.split_on_silence(myaudio, min_silence_len=300, silence_thresh=-32, keep_silence=400)
+            if audios: break
+        return audios

@@ -7,7 +7,7 @@ class Robot:
     rotates = {'j': -15, 'l': 15}
     looks = {'i': -15, 'k': 15}
 
-    def __init__(self, _screen_width=1280, _screen_height=720):
+    def __init__(self,):
         self.rotation = 0
         self.horizon = 30
         
@@ -17,13 +17,13 @@ class Robot:
         # Living rooms: FloorPlan201 - FloorPlan230
         # Bedrooms: FloorPlan301 - FloorPlan330
         # Bathrooms: FloorPLan401 - FloorPlan430
-        
-        self.controller.start(player_screen_width=_screen_width,
-                player_screen_height=_screen_height)
+            
+    def start(self):
+        self.controller.start(player_screen_width=1280,
+                player_screen_height=720)
         self.controller.reset('FloorPlan29')
         self.event = self.controller.step(dict(action='Initialize', gridSize=0.25))
         self.event = self.controller.step(dict(action='TeleportFull', x=0.5, y=0.9313, z=-0.5, rotation=self.rotation, horizon=self.horizon))
-        # self.rotation = self.event.metadata['agent']['rotation']['y']
     
     def randomFloor(self):
         floor = np.random.randint(4)
