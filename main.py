@@ -1,5 +1,3 @@
-from time import time
-import cv2
 from voice import ASR
 from robot import Robot
 from pydub import AudioSegment, silence
@@ -21,8 +19,10 @@ if __name__ == '__main__':
             asr.noise_cancel()
             command = asr.asr()
             if command == 'drop':
+                print('Dropping object...')
                 rb.dropObject()
             else:
+                print('Picking {} up...'.format(command))
                 rb.pickup(command)
             # frame = rb.getFrame()
             # cv2.imshow('ai2thor', frame)
