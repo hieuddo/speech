@@ -15,4 +15,4 @@
 
 ### How to use
   * run ```pip install -r requirements.txt``` to install required libraries
-  * run ```python main.py``` to run the program
+  * run ```python app.py``` to run the program
