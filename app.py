@@ -17,17 +17,17 @@ class Interface(QMainWindow):
         
         self.terminal.setFixedSize(300, 260)
         self.terminal.setReadOnly(True)
-        self.terminal.setText('Press Play button to start\n\nAvailable objects:\n-Apple\n-Bread\n-Fork\n-Knife\n-Lecttuce\n-Potato\n-Spoon\n\nSpeak "drop" to drop object')
+        self.terminal.setText('Pick up object!!!\n\nPress Play button to start\n\nAvailable objects:\n-Apple\n-Bread\n-Fork\n-Knife\n-Lecttuce\n-Potato\n-Spoon\n\nSpeak "drop" to drop object')
 
         self.startBtn = QPushButton()
         self.startBtn.setFixedSize(32,32)
         self.startBtn.setIcon(QtGui.QIcon('button/start.png'))
         self.startBtn.clicked.connect(self.start)
         
-        self.stopBtn = QPushButton()
-        self.stopBtn.setFixedSize(32,32)
-        self.stopBtn.setIcon(QtGui.QIcon('button/stop.png'))
-        self.stopBtn.clicked.connect(self.stop)
+        # self.stopBtn = QPushButton()
+        # self.stopBtn.setFixedSize(32,32)
+        # self.stopBtn.setIcon(QtGui.QIcon('button/stop.png'))
+        # self.stopBtn.clicked.connect(self.stop)
 
         self.wid = QWidget(self)
         self.setCentralWidget(self.wid)
@@ -37,7 +37,7 @@ class Interface(QMainWindow):
 
         self.hbox = QHBoxLayout()
         self.hbox.addWidget(self.startBtn)
-        self.hbox.addWidget(self.stopBtn)
+        # self.hbox.addWidget(self.stopBtn)
 
         self.vbox.addLayout(self.hbox)
 
