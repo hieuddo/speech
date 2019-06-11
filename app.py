@@ -59,11 +59,12 @@ class Interface(QMainWindow):
             self.asr.noise_cancel()
             command = self.asr.asr()
             if command == 'drop':
-                self.terminal.append('Dropping object...')
+                # self.terminal.append('Dropping object...')
                 self.rb.dropObject()
             else:
-                self.terminal.append('Picking {} up...'.format(command))
+                # self.terminal.append('Picking {} up...'.format(command))
                 self.rb.pickup(command)
+        self.loop()
         
     def stop(self):
         self.rb.stop()
