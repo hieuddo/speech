@@ -9,8 +9,8 @@ if __name__ == '__main__':
     asr = ASR()
     run = True
     while(run):
-        frame = rb.getFrame()
-        cv2.imshow('ai2thor', frame)
+        # frame = rb.getFrame()
+        # cv2.imshow('ai2thor', frame)
         
         asr.record_sound('record.wav', duration=5)
         myaudio = AudioSegment.from_wav('record.wav')
@@ -20,19 +20,18 @@ if __name__ == '__main__':
             audio.export('test.wav')
             asr.noise_cancel()
             command = asr.asr()
-            print(command)
             if command == 'drop':
                 rb.dropObject()
             else:
                 rb.pickup(command)
-            frame = rb.getFrame()
-            cv2.imshow('ai2thor', frame)
+            # frame = rb.getFrame()
+            # cv2.imshow('ai2thor', frame)
 
-        tmp = cv2.waitKey(50)
-        if tmp != -1:
-            key = chr(tmp)
-            if key == 'q': run = False
-            rb.apply(key)
+        # tmp = cv2.waitKey(50)
+        # if tmp != -1:
+        #     key = chr(tmp)
+        #     if key == 'q': run = False
+        #     rb.apply(key)
         
     rb.stop()
-    cv2.destroyAllWindows()
+    # cv2.destroyAllWindows()

@@ -22,7 +22,7 @@ class Robot:
                 player_screen_height=_screen_height)
         self.controller.reset('FloorPlan29')
         self.event = self.controller.step(dict(action='Initialize', gridSize=0.25))
-        self.event = self.controller.step(dict(action='TeleportFull', x=0.5, y=0.9313, z=-0.25, rotation=self.rotation, horizon=self.horizon))
+        self.event = self.controller.step(dict(action='TeleportFull', x=0.5, y=0.9313, z=-0.5, rotation=self.rotation, horizon=self.horizon))
         # self.rotation = self.event.metadata['agent']['rotation']['y']
     
     def randomFloor(self):
@@ -41,6 +41,7 @@ class Robot:
     def apply(self, action):
         if action in self.moves:
             self.event = self.controller.step(dict(action=self.moves[action]))
+            print(self.event.metadata['agent']['position'])
             
         elif action in self.rotates:
             self.rotation += self.rotates[action]
@@ -63,5 +64,6 @@ class Robot:
                 break
 
     def dropObject(self):
-        self.event = self.controller.step(dict(action='MoveHandAhead', moveMagnitude = 0.5))
-        self.event = self.controller.step(dict(action='DropHandObject'))
+        self.event = self.controller.step(dict(action='MoveHandAhead', moveMagnitude = 0.2))
+        # self.event = self.controller.step(dict(action='DropHandObject'))
+        self.event = self.controller.step(dict(action='ThrowObject', moveMagnitude= 50.0))
