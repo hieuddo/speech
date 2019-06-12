@@ -4,6 +4,7 @@ from pydub import AudioSegment, silence
 
 if __name__ == '__main__':
     rb = Robot()
+    rb.start()
     asr = ASR()
     run = True
     while(run):
