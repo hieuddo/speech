@@ -23,7 +23,7 @@
   * Model performs poor accuracy
 
 ### Phase 2
-  * HMM with 20 normal records data
+  * HMM with 20 normal records data including noise-contained records
   * Model performs poor accuracy
 
 ### Phase 3
