@@ -1,5 +1,7 @@
 # HMM ASR for Pickup Objects in AI2Thor
 
+Youtube Demo: [Click here](https://www.youtube.com/watch?v=lZ1yOTgKsh8) and [here](https://www.youtube.com/watch?v=wIjFdRnOMnE)
+
 ## Overview
 ### Requirement
   * python3
