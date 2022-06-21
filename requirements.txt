@@ -2,7 +2,7 @@ ai2thor==1.0.2
 sounddevice==0.3.13
 SoundFile==0.10.2
 librosa==0.6.3
-numpy==1.16.2
+numpy==1.22.0
 noisereduce==0.1.2
 pydub==0.23.1
 hmmlearn==0.2.1
